@@ -1,0 +1,5 @@
+
+Dataset/*
+logs/*
+.DS_Store
+best_model_CNN.keras
