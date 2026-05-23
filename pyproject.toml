@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asl-to-text"
+version = "0.1.0"
+description = "A PySide6 desktop app for translating ASL hand signs from a webcam into text predictions."
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+  "opencv-python>=4.9",
+  "mediapipe>=0.10",
+  "numpy>=1.24",
+  "tensorflow>=2.15",
+  "scikit-learn>=1.3",
+  "scikit-image>=0.22",
+  "matplotlib>=3.8",
+  "pandas>=2.1",
+  "PySide6>=6.6",
+]
+
+[project.scripts]
+asl-to-text-app = "asl_to_text.gui.main:main"
+asl-collect-data = "asl_to_text.data_collection:main"
+asl-train-model = "asl_to_text.training:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

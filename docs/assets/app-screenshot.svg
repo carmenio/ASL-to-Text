@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">ASL-to-Text desktop app screenshot</title>
+  <desc id="desc">Mock mode desktop app showing webcam preview, hand detection area, prediction, and model status.</desc>
+  <rect width="1200" height="760" fill="#f6f8fb"/>
+  <rect x="32" y="32" width="1136" height="696" rx="10" fill="#ffffff" stroke="#d9e2ec"/>
+  <text x="64" y="82" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#17202a">ASL-to-Text</text>
+  <text x="64" y="112" font-family="Arial, sans-serif" font-size="16" fill="#52616f">Live webcam recognition with setup-mode fallback</text>
+  <rect x="64" y="146" width="760" height="520" rx="8" fill="#111827"/>
+  <rect x="272" y="214" width="300" height="300" rx="12" fill="#1f2937" stroke="#37dc78" stroke-width="6"/>
+  <path d="M397 465c-35-18-48-53-33-91 13-34 22-64 8-96-8-19 18-31 30-12 16 25 18 55 12 82l24-93c6-22 38-15 34 8l-20 101 39-90c9-20 39-8 31 14l-36 101 43-62c14-20 40-1 27 19l-55 88c-21 34-66 48-104 31z" fill="#e8c7a1"/>
+  <circle cx="422" cy="340" r="7" fill="#f7d6b0"/>
+  <rect x="92" y="602" width="220" height="34" rx="17" fill="#263241"/>
+  <text x="112" y="625" font-family="Arial, sans-serif" font-size="16" fill="#d1d5db">Camera running</text>
+  <rect x="858" y="146" width="278" height="520" rx="8" fill="#ffffff" stroke="#d9e2ec"/>
+  <text x="888" y="194" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#52616f">Prediction</text>
+  <text x="888" y="265" font-family="Arial, sans-serif" font-size="74" font-weight="700" fill="#0f766e">A</text>
+  <text x="888" y="312" font-family="Arial, sans-serif" font-size="20" fill="#17202a">Confidence: 94%</text>
+  <line x1="888" y1="352" x2="1106" y2="352" stroke="#e5e9f0"/>
+  <text x="888" y="394" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#52616f">Model</text>
+  <text x="888" y="426" font-family="Arial, sans-serif" font-size="16" fill="#17202a">models/best_model_CNN.keras</text>
+  <text x="888" y="454" font-family="Arial, sans-serif" font-size="16" fill="#0f766e">Loaded</text>
+  <line x1="888" y1="494" x2="1106" y2="494" stroke="#e5e9f0"/>
+  <text x="888" y="536" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#52616f">Input</text>
+  <text x="888" y="568" font-family="Arial, sans-serif" font-size="16" fill="#17202a">Camera: 0</text>
+  <rect x="888" y="604" width="104" height="38" rx="6" fill="#1d4ed8"/>
+  <text x="916" y="628" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Start</text>
+  <rect x="1004" y="604" width="82" height="38" rx="6" fill="#94a3b8"/>
+  <text x="1030" y="628" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Stop</text>
+</svg>

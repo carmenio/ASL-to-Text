@@ -1,5 +1,25 @@
-
-Dataset/*
-logs/*
 .DS_Store
-best_model_CNN.keras
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Local datasets and generated training output
+data/**
+!data/
+!data/raw/
+!data/raw/.gitkeep
+Dataset/
+logs/
+
+# Model artifacts are distributed through GitHub Releases.
+models/**
+!models/
+!models/.gitkeep
+*.keras
+*.h5
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+.vscode/settings.json
