@@ -32,8 +32,19 @@ Python 3.10 or 3.11 is recommended.
 python -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+If you want the shorter terminal commands such as `asl-collect-data`,
+`asl-train-model`, and `asl-to-text-app`, also install the project in editable
+mode:
+
+```bash
 pip install -e .
 ```
+
+You can still run everything from a source checkout without editable install by
+using the scripts in `scripts/`.
 
 ## Model File
 
@@ -47,21 +58,15 @@ Model artifacts are not committed to git. Download `best_model_CNN.keras` from t
 
 If the model is missing, the desktop app still launches in setup mode and shows camera/model status instead of crashing.
 
-## Run the App
+## Full Workflow
 
-```bash
-asl-to-text-app --model models/best_model_CNN.keras --camera 0
-```
+Use this order when creating your own ASL model:
 
-From a source checkout, this wrapper does the same thing after installation:
+1. Create the dataset with webcam images.
+2. Train the CNN model from that dataset.
+3. Run the GUI with the trained model.
 
-```bash
-python scripts/run_app.py --model models/best_model_CNN.keras --camera 0
-```
-
-Hold one hand in the camera frame. When a hand is detected, the app draws a box around it and sends the cropped hand image to the model.
-
-## Collect Training Images
+## 1. Create the Dataset
 
 Use one folder per class label. Each folder name becomes the training label.
 
@@ -69,10 +74,10 @@ Use one folder per class label. Each folder name becomes the training label.
 data/
   raw/
     A/
-      image_001.jpg
-      image_002.jpg
+      A_0000_user.jpg
+      A_0001_user.jpg
     B/
-      image_001.jpg
+      B_0000_user.jpg
     ...
     Z/
     del/
@@ -83,14 +88,36 @@ data/
 Capture new webcam images for a label:
 
 ```bash
+python scripts/collect_data.py --label A --name user --output data/raw --camera 0
+```
+
+Or, if you installed the project with `pip install -e .`:
+
+```bash
 asl-collect-data --label A --name user --output data/raw --camera 0
 ```
 
-Press `q` in the OpenCV window to stop recording. The collector saves cropped hand images into `data/raw/<label>/`.
+Press `q` in the OpenCV window to stop recording. The collector saves cropped
+hand images into `data/raw/<label>/`.
 
-## Train a Model
+Repeat this command for every class you want the model to recognize, for example
+`A` through `Z`, plus `space`, `del`, and `nothing`.
+
+You can also use the notebook-friendly collector:
+
+```bash
+python notebooks/GetDataset.py --label A --name user --output data/raw --max-images 200
+```
+
+## 2. Train the Model
 
 After adding training images, run:
+
+```bash
+python scripts/train_model.py --data data/raw --output models/best_model_CNN.keras --epochs 10
+```
+
+Or, if you installed the project with `pip install -e .`:
 
 ```bash
 asl-train-model --data data/raw --output models/best_model_CNN.keras --epochs 10
@@ -100,11 +127,29 @@ Training writes the best Keras model to the output path and logs TensorBoard dat
 
 ![Training and dataset workflow](docs/assets/training-workflow.svg)
 
+## 3. Run the GUI
+
+Start the desktop app with the trained model:
+
+```bash
+python scripts/run_app.py --model models/best_model_CNN.keras --camera 0
+```
+
+Or, if you installed the project with `pip install -e .`:
+
+```bash
+asl-to-text-app --model models/best_model_CNN.keras --camera 0
+```
+
+Hold one hand in the camera frame. When a hand is detected, the app draws a box
+around it and sends the cropped hand image to the model.
+
 ## Troubleshooting
 
 - **Camera unavailable:** try a different camera index, such as `--camera 1`.
 - **Model missing:** download `best_model_CNN.keras` from GitHub Releases or train your own model.
-- **Import errors:** make sure the virtual environment is active and `pip install -e .` completed successfully.
+- **Import errors:** make sure the virtual environment is active and `pip install -r requirements.txt` completed successfully.
+- **Command not found:** either run the `python scripts/...` commands or install editable mode with `pip install -e .`.
 - **Poor predictions:** add more balanced images for each class and retrain the model.
 
 ## Notes
